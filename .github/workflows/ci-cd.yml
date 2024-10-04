@@ -25,6 +25,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+      
+    - name: List files in root directory
+      run: ls -la
     - name: Set up kubectl
       uses: azure/setup-kubectl@v1
       with:
@@ -32,5 +37,5 @@ jobs:
 
     - name: Deploy to Kubernetes
       run: |
-        kubectl apply -f FlaskApp-Kubernetes-Repository/deployment.yaml
-        kubectl apply -f FlaskApp-Kubernetes-Repository/service.yaml
+        kubectl apply -f deployment.yaml
+        kubectl apply -f service.yaml
